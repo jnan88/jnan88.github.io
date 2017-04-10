@@ -1,3 +1,20 @@
+## 查看CPU、内存等信息
+```
+# cpu
+grep "model name" /proc/cpuinfo 
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c
+cat /proc/cpuinfo | grep physical | uniq -c
+# cpu位数
+echo $HOSTTYPE
+# 内存
+grep MemTotal /proc/meminfo 
+# linux 版本
+cat /etc/redhat-release
+# linux 内核版本
+uname -a 或uname -r
+
+```
+
 ## linux连接状态查看
 > netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 
@@ -46,8 +63,8 @@ option参数说明：    #一般使用-avz就可以
 rsync同步
 ```
 #从远程同步文件本地
-rsync -zvrtopgl --progress root@remote-ip:/www/remote/  /www/local/
+rsync -zvrtopgl --progress --delete root@remote-ip:/www/remote/  /www/local/
 
 #从本地同步文件到远程服务器
-rsync -zvrtopgl --progress /www/local/ root@remote-ip:/www/remote/
+rsync -zvrtopgl --progress --delete /www/local/ root@remote-ip:/www/remote/
 ```
