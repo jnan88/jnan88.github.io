@@ -35,6 +35,8 @@ thread_pool_size=50
 thread_pool_idle_timeout=900
 # timer线程检测间隔，单位为毫秒，默认500ms,是后台timer线程检测任务是否堵塞的时间间隔，在并发压力较大时，该参数设置过大可能会造成timer线程无法及时唤醒/创建worker线程
 #thread_pool_stall_limit
+# 1G=8,2G=16,3G=32,大于3G=64
+# thread_cache_size=64
 max_connections=3000
 general_log=ON
 general_log_file=/www/logs/mysql/general.log
