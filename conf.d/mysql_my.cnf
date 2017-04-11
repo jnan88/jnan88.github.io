@@ -1,0 +1,88 @@
+# Percona Server template configuration
+
+[mysqld]
+#
+# Remove leading # and set to the amount of RAM for the most important data
+# cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.
+# innodb_buffer_pool_size = 128M
+#
+# Remove leading # to turn on a very important data integrity option: logging
+# changes to the binary log between backups.
+# log_bin
+#
+# Remove leading # to set options mainly useful for reporting servers.
+# The server defaults are faster for transactions and fast SELECTs.
+# Adjust sizes as needed, experiment to find the optimal values.
+# join_buffer_size = 128M
+# sort_buffer_size = 2M
+# read_rnd_buffer_size = 2M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+#new config
+character-set-server=utf8mb4
+thread_handling=pool-of-threads
+# threadpool中最大线程数目，所有group中worker线程总数超过该限制后不能继续创建更多线程，默认100000
+thread_pool_max_threads=1000
+#thread pool中线程数的下限值
+thread_pool_size=50
+# worker线程最大空闲时间，单位为秒，超过限制后会退出，默认60
+thread_pool_idle_timeout=900
+# timer线程检测间隔，单位为毫秒，默认500ms,是后台timer线程检测任务是否堵塞的时间间隔，在并发压力较大时，该参数设置过大可能会造成timer线程无法及时唤醒/创建worker线程
+#thread_pool_stall_limit
+max_connections=3000
+general_log=ON
+general_log_file=/www/logs/mysql/general.log
+slow-query-log=1
+slow_query_log_file="/www/logs/mysql/query.log"
+long_query_time=10
+# 内存的70%-80%
+innodb_buffer_pool_size = 6G
+innodb_buffer_pool_instances=4
+innodb_read_io_threads=1000
+innodb_write_io_threads=1000
+# 默认为关闭OFF。如果开启该参数，停止MySQL服务时，InnoDB将InnoDB缓冲池中的热数据保存到本地硬盘
+innodb_buffer_pool_dump_at_shutdown = 1
+# 运行时dump缓冲池
+innodb_buffer_pool_dump_now = 1
+# 默认为关闭OFF。如果开启该参数，启动MySQL服务时，MySQL将本地热数据加载到InnoDB缓冲池中
+innodb_buffer_pool_load_at_startup = 1
+# 默认为关闭OFF。如果开启该参数，停止MySQL服务时，以手动方式将InnoDB缓存池中的热数据保存到本地硬盘
+innodb_buffer_pool_load_now = 1
+# 默认值为all，表示缓存所有操作
+#innodb_change_buffering=all
+# 关闭表进行查询操作
+innodb_stats_on_metadata=off
+# 调整刷新脏页的数量,默认200
+innodb_io_capacity=2000
+innodb_io_capacity_max=6000
+innodb_flush_method=O_DIRECT
+innodb_log_file_size = 256M
+innodb_log_files_in_group=3
+#处理大理的TEXT，或是BLOB字段增加
+innodb_log_buffer_size=16M
+#网络包的大小，为避免出现较大的网络包错误，建议设置为16M
+max_allowed_packet = 8M
+#缓存表大小,推荐128
+table_open_cache = 128
+#connection级的参数，排序缓存大小
+sort_buffer_size = 16M
+net_buffer_length = 32K
+#connection级的参数。一般设置为2-4MB即可
+read_buffer_size = 1M
+#connection级的参数 随机读取数据缓冲区使用内存
+read_rnd_buffer_size = 16M
+#批量插入数据缓存大小，可以有效提高插入效率，默认为8M
+bulk_insert_buffer_size = 64M
+#
+[client]
+default-character-set=utf8mb4
+[mysql]
+default-character-set=utf8mb4
+# 自动补全
+no-auto-rehash
