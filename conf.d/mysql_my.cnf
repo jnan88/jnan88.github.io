@@ -79,6 +79,8 @@ read_buffer_size = 1M
 read_rnd_buffer_size = 16M
 #批量插入数据缓存大小，可以有效提高插入效率，默认为8M
 bulk_insert_buffer_size = 64M
+sql_mode='ONLY_FULL_GROUP_BY,NO_AUTO_VALUE_ON_ZERO,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,
+ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
 #
 [client]
 default-character-set=utf8mb4
