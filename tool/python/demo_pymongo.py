@@ -14,12 +14,12 @@ from bson.son import SON
 import pprint
 MONGO_URI='mongodb://localhost:27017/'
 client = MongoClient(MONGO_URI)
-db_book = client.book
-col_zhifeng = db_book.zhifeng
+mdb = client.book
+mcl = mdb.mcl
 
-pprint.pprint(col_zhifeng.find_one())
+pprint.pprint(mcl.find_one())
 
 ##
-for item in col_zhifeng.find():
+for item in mcl.find():
     pprint.pprint(item)
 
