@@ -5,7 +5,7 @@
 #############################
 build_path=/opt/install
 install_path=/www/server/openresty
-install_version=1.9.7.4
+install_version=1.11.2.2
 #版本
 echo "openresty版本为：${install_version}"
 echo "编译路径为：${build_path}"
