@@ -7,17 +7,28 @@
 ```
 -server -Xms2g -Xmx2g -XX:NewSize=512m -XX:MaxNewSize=1g -XX:+AggressiveOpts -XX:+UseBiasedLocking -XX:+DisableExplicitGC -XX:MaxTenuringThreshold=31 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSCompactAtFullCollection -XX:+UseFastAccessorMethods -XX:+UseCMSInitiatingOccupancyOnly -Djava.awt.headless=true
 ```
-## VM case2
+## VM case2（6G）
 ```
--Xms1g
+-Xms4g
 -Xmx4g
--XX:NewSize=256m
--XX:MaxNewSize=512m
+-XX:NewRatio=1 #新生代占堆大小的1/3，1表示对半
 -XX:MetaspaceSize=256m
 -XX:MaxMetaspaceSize=512m
+-XX:MaxDirectMemorySize=4g
+-XX:ReservedCodeCacheSize=240M
 -XX:AutoBoxCacheMax=20000
+-XX:+UseConcMarkSweepGC
+-XX:CMSInitiatingOccupancyFraction=75
+-XX:+UseCMSInitiatingOccupancyOnly
+-XX:MaxTenuringThreshold=6
+-XX:+ExplicitGCInvokesConcurrent
+-XX:+ParallelRefProcEnabled
 -Xloggc:/www/logs/gc-www.log
+-XX:ErrorFile=/www/logs/hs_err_%p.log
+-Xnoclassgc
+-XX:-OmitStackTraceInFastThrow
 -XX:+HeapDumpOnOutOfMemoryError
+-XX:HeapDumpPath=/www/logs/
 -XX:+PrintGCDetails
 -XX:+PrintGCDateStamps
 -XX:+PrintHeapAtGC
@@ -31,10 +42,10 @@
 ## VM case3
 ```
 -server #64位机器下默认
--Xms6000M #最小堆大小
--Xmx6000M #最大堆大小
+-Xms6000M #最小堆大小，相当于NewSize
+-Xmx6000M #最大堆大小，相当于MaxNewSize
 -Xmn500M #新生代大小
--Xss256K #栈大小
+-Xss256K #栈大小，默认每条线程为1M（以前是256K），有JSON解析之类的递归调用时不能设太小
 -XX:PermSize=500M (JDK7)
 -XX:MaxPermSize=500M (JDK7)
 -XX:MetaspaceSize=128m  （JDK8）
