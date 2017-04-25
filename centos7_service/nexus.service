@@ -1,3 +1,8 @@
+ln -s /soft/nexus/bin/nexus /etc/init.d/nexus
+chkconfig --add nexus
+chkconfig --levels 345 nexus on
+
+
 [Unit]
 Description=nexus
 After=syslog.target network.target remote-fs.target nss-lookup.target
