@@ -12,6 +12,7 @@
 -Xms4g
 -Xmx4g
 -XX:NewRatio=1 #新生代占堆大小的1/3，1表示对半
+-XX:OldSize=64m #64位默认约5m
 -XX:MetaspaceSize=256m
 -XX:MaxMetaspaceSize=512m
 -XX:MaxDirectMemorySize=4g
