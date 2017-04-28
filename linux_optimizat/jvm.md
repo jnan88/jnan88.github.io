@@ -11,8 +11,8 @@
 ```
 -Xms4g
 -Xmx4g
--XX:NewRatio=1 #新生代占堆大小的1/3，1表示对半
--XX:OldSize=64m #64位默认约5m
+-XX:NewRatio=1
+-XX:OldSize=64m
 -XX:MetaspaceSize=256m
 -XX:MaxMetaspaceSize=512m
 -XX:MaxDirectMemorySize=4g
@@ -39,6 +39,11 @@
 -XX:+UseGCLogFileRotation
 -XX:NumberOfGCLogFiles=10
 -XX:GCLogFileSize=10M
+-Dcom.sun.management.jmxremote
+-Djava.rmi.server.hostname=192.168.1.1
+-Dcom.sun.management.jmxremote.port=1099
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
 ```
 ## VM case3
 ```
@@ -46,6 +51,8 @@
 -Xms6000M #最小堆大小，相当于NewSize
 -Xmx6000M #最大堆大小，相当于MaxNewSize
 -Xmn500M #新生代大小
+-XX:NewRatio=1 #新生代占堆大小的1/3，1表示对半
+-XX:OldSize=64m #64位默认约5m
 -Xss256K #栈大小，默认每条线程为1M（以前是256K），有JSON解析之类的递归调用时不能设太小
 -XX:PermSize=500M (JDK7)
 -XX:MaxPermSize=500M (JDK7)
