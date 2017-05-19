@@ -8,3 +8,13 @@ sudo wget -P /etc/yum.repos.d/ http://mirrors.aliyun.com/repo/epel-7.repo
 sudo yum clean all
 sudo yum makecache
 ```
+
+## python3.6
+```
+wget https://www.python.org/ftp/python/3.6.1/Python-3.6.1.tgz
+tar zxvf Python-3.6.1.tgz
+cd Python-3.6.1
+./configure --prefix=/usr/local/python3
+make
+make install
+``
