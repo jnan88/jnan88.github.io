@@ -16,8 +16,9 @@ cat > $JETTY_BASE/resources/log4j2.xml <<END
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="warn" name="Jetty" >
 
-  <Appenders>
-  </Appenders>
+  <Properties>
+    <Property name="jetty.logging.dir" value="logs"/>
+  </Properties>
   <Loggers>
     <Root level="error">
       <AppenderRef ref="STDOUT"/>
