@@ -33,8 +33,8 @@ cat > $JETTY_BASE/resources/log4j2.xml <<END
     </Console>
 
     <RollingFile name="file"
-      fileName="${jetty.logging.dir}/jetty.log"
-      filePattern="${jetty.logging.dir}/jetty-%d{MM-dd-yyyy}.log.gz"
+      fileName="logs/jetty.log"
+      filePattern="logs/jetty-%d{MM-dd-yyyy}.log.gz"
       ignoreExceptions="false">
       <PatternLayout>
         <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
