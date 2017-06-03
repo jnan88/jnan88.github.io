@@ -53,3 +53,39 @@ cat > $JETTY_BASE/resources/log4j2.xml <<END
 
 </Configuration>
 END
+## 更新jetty.sh
+```
+JAVA=/www/env/java/bin/java
+JETTY_HOME=/www/server/jetty
+JETTY_BASE=$(cd $(dirname $0);pwd)
+NAME=$(basename $JETTY_BASE)
+JETTY_PID=${JETTY_BASE}/${NAME}.pid
+JETTY_STATE=${JETTY_BASE}/${NAME}.state
+```
+## jetty jvm参数配置start.d/jvm.ini
+```
+-Xms1g
+-Xmx2g
+-XX:NewSize=256m
+-XX:MaxNewSize=512m
+-XX:MetaspaceSize=128m
+-XX:MaxMetaspaceSize=512m
+-XX:AutoBoxCacheMax=20000
+-Xloggc:/www/logs/gc-www.log
+-XX:+HeapDumpOnOutOfMemoryError
+-XX:+PrintGCDetails
+-XX:+PrintGCDateStamps
+-XX:+PrintHeapAtGC
+-XX:+PrintTenuringDistribution
+-XX:+PrintGCApplicationStoppedTime
+-XX:+PrintPromotionFailure
+-XX:+UseGCLogFileRotation
+-XX:NumberOfGCLogFiles=10
+-XX:GCLogFileSize=10M
+-Dcom.sun.management.jmxremote
+-Djava.rmi.server.hostname=ip
+-Dcom.sun.management.jmxremote.port=50001
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
+-Dspring.profiles.active=test
+```
