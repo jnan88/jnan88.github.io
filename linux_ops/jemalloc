@@ -1,0 +1,6 @@
+
+wget https://github.com/jemalloc/jemalloc/archive/master.zip
+yum install -y autoconf
+./autogen.sh
+./configure
+make && make install
