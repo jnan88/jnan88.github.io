@@ -28,3 +28,19 @@ gmake
 gmake install
 echo "openresty-${install_version} 安装成功!"
 echo "启动请运行 :[ ${install_path}/nginx/sbin/nginx ]"
+cat > /usr/lib/systemd/system/nginx.service<<END
+[Unit]
+Description=nginx
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/www/server/openresty/nginx/sbin/nginx
+ExecReload=/www/server/openresty/nginx/sbin/nginx -s reload
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+END
+systemctl enable nginx
