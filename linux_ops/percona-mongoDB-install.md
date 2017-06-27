@@ -11,3 +11,8 @@ Percona-Server-MongoDB-34-server-*
 ```
 /usr/bin/percona-server-mongodb-enable-auth.sh
 ```
+
+## uri链接
+```
+mongodb://userName:password@host:port/db?authSource=admin
+```
