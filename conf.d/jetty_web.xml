@@ -1,0 +1,35 @@
+## pom.xml增加
+```
+<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-servlets</artifactId>
+			<version>${jetty.version}</version>
+			<scope>test</scope>
+		</dependency>
+```
+## web.xml增加内容，在encodingfilter下面
+```
+<!-- 开启Jetty的gzip压缩处理 -->
+	<filter>
+		<filter-name>GzipFilter</filter-name>
+		<filter-class>org.eclipse.jetty.servlets.GzipFilter</filter-class>
+		<init-param>
+			<param-name>mimeTypes</param-name>
+			<param-value>text/html,text/plain,text/xml,application/xhtml+xml,text/css,application/javascript,application/x-javascript,image/svg+xml</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>GzipFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- GzipFilter End -->
+	<!-- 开启jetty容器缓存 -->
+	<servlet>
+		<servlet-name>default</servlet-name>
+		<servlet-class>org.eclipse.jetty.servlet.DefaultServlet</servlet-class>
+		<init-param>
+			<param-name>cacheControl</param-name>
+			<param-value>max-age=3600,public</param-value>
+		</init-param>
+	</servlet>
+  ```
