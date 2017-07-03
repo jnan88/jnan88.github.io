@@ -1,3 +1,8 @@
+## env
+```
+yum install numactl -y
+```
+
 ## percona-server-mongodb
 ```
 rpm -ivh Percona-Server-MongoDB-34-mongos-* \
