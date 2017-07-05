@@ -12,5 +12,5 @@ flush privileges;
 
 
 create user dev identified by 'mysql@dev';
-create database dev;
+create database dev default charset utf8 collate utf8_general_ci;
 grant all on dev.* to dev
