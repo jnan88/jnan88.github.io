@@ -1,0 +1,10 @@
+[Unit]
+Description=kafka - high performance web server
+After=network.target remote-fs.target nss-lookup.target
+[Service]
+Type=forking
+Environment=KAFKA_HOME=/www/server/kafka
+ExecStart=${KAFKA_HOME}/bin/kafka-server-start.sh -daemon ${KAFKA_HOME}/config/server.properties
+ExecStop=${KAFKA_HOME}/bin/kafka-server-stop.sh  ${KAFKA_HOME}/config/server.properties &
+[Install]
+WantedBy=multi-user.target
