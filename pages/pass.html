@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>随机密码生成</title>
+		<script type="text/javascript">
+			function randomPassword() {
+				var seed = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+				); //数组
+				seed.push('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+				seed.push('2', '3', '4', '5', '6', '7', '8', '9');
+				if(document.getElementById("pass-type1").checked){
+					seed.push('!','@','#','%','$','&');
+				}
+				var seedlength = seed.length; //数组长度
+				var createPassword = '';
+				var size = document.getElementById("pass-len").value;
+				for(i = 0; i < size; i++) {
+					j = Math.floor(Math.random() * seedlength);
+					createPassword += seed[j];
+				}
+				document.getElementById('pass-text').textContent = createPassword;
+			}
+		</script>
+	</head>
+
+	<body>
+		<label><input type="checkbox" id="pass-type1" value="1" checked="checked" />特殊字符！@#￥%&</label>
+		请输入密码位数：
+		<input type="number" min="6" max="64" name="len" value="16" id="pass-len" /> <button id="btn-gen" onclick="javascript:randomPassword()">生成</button>
+		<hr />
+		<br/> 密码：
+		<span id="pass-text"></span>
+	</body>
+
+</html>
