@@ -1,5 +1,7 @@
 ## ioniocn Blog
 
+## Tools
+[随机密码](/pages/pass.html)
 
 ### Markdown
 
