@@ -5,8 +5,8 @@
 #############################
 INSTALL_VERSION=3.2.0
 INSTALL_PATH=/usr/local
-DATA_PATH=/usr/local/share
-BUILD_PATH=/www/download
+DATA_PATH=/www/data/redis
+BUILD_PATH=/opt/down
 ######wget make gcc tcl
 yum install -y wget make gcc tcl
 mkdir ${BUILD_PATH} -p
