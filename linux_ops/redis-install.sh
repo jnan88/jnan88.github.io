@@ -3,7 +3,7 @@
 #######Redis安装脚本##########
 #Centos7
 #############################
-INSTALL_VERSION=3.2.0
+INSTALL_VERSION=4.0.1
 INSTALL_PATH=/usr/local
 DATA_PATH=/www/data/redis
 BUILD_PATH=/opt/down
