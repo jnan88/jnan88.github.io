@@ -5,7 +5,7 @@
 #############################
 build_path=/opt/down
 install_path=/www/server/openresty
-install_version=1.11.2.4
+install_version=1.11.2.5
 #版本
 echo "openresty版本为：${install_version}"
 echo "编译路径为：${build_path}"
@@ -19,8 +19,12 @@ mkdir -p ${install_path}
 mkdir -p ${build_path}
 #############################
 cd ${build_path}
+if [ ! -f openresty-${install_version}.tar.gz ];then
 wget https://openresty.org/download/openresty-${install_version}.tar.gz
+fi
+if [ ! -d openresty-${install_version} ];then
 tar zxvf openresty-${install_version}.tar.gz
+fi
 cd openresty-${install_version}
 
 ./configure --prefix=${install_path}
