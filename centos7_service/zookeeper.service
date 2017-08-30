@@ -1,0 +1,10 @@
+[Unit]
+Description=zookeeper
+After=network.target remote-fs.target nss-lookup.target
+[Service]
+Type=forking
+Environment=KAFKA_HOME=/www/env/kafka
+ExecStart=${KAFKA_HOME}/bin/zookeeper-server-start.sh -daemon ${KAFKA_HOME}/config/zookeeper.propertie
+ExecStop=${KAFKA_HOME}/bin/zookeeper-server-stop.sh  ${KAFKA_HOME}/config/zookeeper.properties &
+[Install]
+WantedBy=multi-user.target
