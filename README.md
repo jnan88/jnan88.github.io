@@ -1,5 +1,7 @@
 # jnan88.github.io
 
+排序算法动画：http://sorting.at/
+
 ## 使用aliyun
 ```
 sudo cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
