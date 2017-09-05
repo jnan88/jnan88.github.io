@@ -25,6 +25,17 @@ symbolic-links=0
 log-error=/var/log/mysqld.log
 pid-file=/var/run/mysqld/mysqld.pid
 #new config
+log_bin = mysql-bin
+binlog_format = mixed
+expire_logs_days = 30 #超过30天的binlog删除
+slow_query_log = 1
+long_query_time = 1 #慢查询时间 超过1秒则为慢查询
+slow_query_log_file = /data/mysql/mysql-slow.log
+performance_schema = 0
+explicit_defaults_for_timestamp
+#lower_case_table_names = 1 #不区分大小写
+skip-external-locking #MySQL选项以避免外部锁定。该选项默认开启
+
 character-set-server=utf8mb4
 thread_handling=pool-of-threads
 # threadpool中最大线程数目，所有group中worker线程总数超过该限制后不能继续创建更多线程，默认100000
