@@ -14,9 +14,11 @@ mkdir ${INSTALL_PATH} -p
 cd ${BUILD_PATH}
 rm -rf redis-${INSTALL_VERSION}
 if [ ! -f redis-${INSTALL_VERSION}.tar.gz ];then
-  wget http://download.redis.io/releases/redis-${INSTALL_VERSION}.tar.gz
+    wget http://download.redis.io/releases/redis-${INSTALL_VERSION}.tar.gz
 fi
-tar zxvf redis-${INSTALL_VERSION}.tar.gz
+if [ ! -d redis-${INSTALL_VERSION} ];then
+    tar zxvf redis-${INSTALL_VERSION}.tar.gz
+fi
 cd redis-${INSTALL_VERSION}
 echo "执行：make distclean"
 make distclean
