@@ -1,5 +1,5 @@
 yum remove mariadb* -y
-yum install -y jemalloc perl perl-Data-Dumper perl-JSON net-tools libaio
+yum install -y jemalloc perl perl-Data-Dumper perl-JSON net-tools libaio openssl openssl-devel
 wget Percona-Server-5.7.10-1rc1-rb13e470-el7-x86_64-bundle.tar
 tar xvf Percona-Server-5.7.10-1rc1-rb13e470-el7-x86_64-bundle.tar
 rpm -ivh *.rpm
