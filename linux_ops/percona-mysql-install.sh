@@ -9,6 +9,7 @@ rpm -ivh *.rpm
 set global validate_password_policy=0;
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'dev#mysql';
 flush privileges;
+delete from mysql.user where User!='root';
 # slave
 create user slave identified by 'mysql#slave123';
 grant replication slave,replication client on *.* to 'slave'@'192.168.1.%' identified by 'mysql#slave123';
