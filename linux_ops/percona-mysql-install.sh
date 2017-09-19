@@ -19,7 +19,8 @@ create database dev default charset utf8 collate utf8_general_ci;
 grant all on dev.* to dev
 
 
-create user dev identified by 'mysql@dev';
+create user dev identified by 'mysql#dev';
 create database dev default charset utf8 collate utf8_general_ci;
-grant all on dev.* to dev
+grant all privileges on dev.* to dev
+flush privileges;
 
