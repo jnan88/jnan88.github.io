@@ -27,7 +27,7 @@ tar zxvf openresty-${install_version}.tar.gz
 fi
 cd openresty-${install_version}
 
-./configure --prefix=${install_path} --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module
+./configure --prefix=${install_path} --with-http_v2_module --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module
 gmake
 gmake install
 echo "openresty-${install_version} 安装成功!"
