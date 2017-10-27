@@ -71,7 +71,7 @@ JVM_OPS_PLOG="-XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:
 JMX_HOST=192.168.1.1
 JMX_PORT=50001
 JVM_OPS_JMX="-Dcom.sun.management.jmxremote -Djava.rmi.server.hostname=${JMX_HOST} -Dcom.sun.management.jmxremote.port=${JMX_PORT} -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false"
-JVM_OPS_APP= "-Dspring.profiles.active=test"
+JVM_OPS_APP="-Dspring.profiles.active=dev"
 
 JAVA_OPTIONS="${JVM_OPS_CORE} ${JVM_OPS_LOG} ${JVM_OPS_PLOG} ${JVM_OPS_JMX} ${JVM_OPS_APP}"
 JETTY_ARGS="jetty.http.port=8081"
