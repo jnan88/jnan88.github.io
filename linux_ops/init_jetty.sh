@@ -64,6 +64,8 @@ JETTY_STATE=${JETTY_BASE}/${NAME}.state
 ```
 ## jetty jvm参数配置start.d/jvm.ini
 ```
+--module=jvm
+--exec
 -Xms1g
 -Xmx2g
 -XX:NewSize=256m
