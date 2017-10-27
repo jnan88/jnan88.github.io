@@ -8,6 +8,7 @@ java -jar $JETTY_HOME/start.jar --create-startd
 JETTY_MODULES=ext,server,resources,http,deploy,slf4j-log4j2,jsp,jstl,servlet,jvm
 java -jar $JETTY_HOME/start.jar --add-to-start=$JETTY_MODULES
 
+java -jar ../start.jar --add-to-start=http,slf4j-logback,jvm,deploy
 
 # 更新日志配置
 mkdir $JETTY_BASE/resources -p
