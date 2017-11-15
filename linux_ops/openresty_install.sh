@@ -13,7 +13,7 @@ echo "安装路径为：${install_path}"
 #######################################
 ## install Openresty ##
 #######################################
-yum install -y wget make gcc readline-devel perl pcre-devel openssl-devel gc-c++ libreadline-dev libncurses5-dev libpcre3-dev  libssl-dev build-essential
+yum install -y wget make gcc readline-devel perl pcre-devel openssl-devel gcc-c++ libreadline-dev libncurses5-dev libpcre3-dev  libssl-dev build-essential
 #############################
 mkdir -p ${install_path}
 mkdir -p ${build_path}
