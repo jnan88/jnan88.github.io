@@ -22,6 +22,8 @@ Hazelcast的应用便捷性深受开发者喜欢，但如果要投入使用，�
 
 用于分布式存储，并对非常大的数据用户可以在不了解分布式底层细节的情况下，开发分布式程序。充分利用集群进行高速运算和存储。Hadoop实现了一个分布式文件系统(Hadoop Distributed File System)，简称HDFS。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，MapReduce则为海量的数据提供了计算。
 
+## Flink
+
 ## Solr ——开源企业搜索平台，用Java编写，来自Apache Lucene项目。
 
 Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的XML文件，生成索引;也可以通过Http Get操作提出查找请求，并得到XML格式的返回结果。
