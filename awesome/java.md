@@ -9,3 +9,5 @@ unzip my.jar -d my
 cd my
 jar cvf ../my-new.jar .
 ```
+## logback-kafka-appender
+https://github.com/danielwegener/logback-kafka-appender
