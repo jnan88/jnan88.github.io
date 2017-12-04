@@ -7,7 +7,7 @@
 ```
 unzip my.jar -d my
 cd my
-jar cvf ../my-new.jar .
+jar cvfm my-new.jar my/META-INF/MANIFEST.MF -C my/ .
 ```
 ## logback-kafka-appender
 https://github.com/danielwegener/logback-kafka-appender
