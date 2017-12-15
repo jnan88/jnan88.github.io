@@ -1,0 +1,13 @@
+[Unit]
+Description=mindoc
+After=network.target
+
+[Service]
+Type=forking #使用此启动类型应同时指定 PIDFile=，以便systemd能够跟踪服务的主进程
+PIDFile=/www/web/demo/mindoc.pid
+ExecStart=/www/web/demo/mindoc start
+ExecStop=/www/web/demo/mindoc stop
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
