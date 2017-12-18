@@ -51,6 +51,23 @@
 			<artifactId>disruptor</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+		<!-- kafka -->
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.12</artifactId>
+			<version>0.11.0.2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-clients</artifactId>
+			<version>0.11.0.2</version>
+		</dependency>
 ```
 ## log4j2.xml
 ```
@@ -98,6 +115,11 @@
 				<TimeBasedTriggeringPolicy />
 			</Policies>
 		</RollingRandomAccessFile>
+		<!--输出到kafka-->
+		<Kafka name="kafka-log" topic="log-test">
+			<PatternLayout pattern="${log_pattern}" />
+			<Property name="bootstrap.servers">localhost:9092</Property>
+		</Kafka>
 	</Appenders>
 
 	<Loggers>
@@ -110,7 +132,9 @@
 		</logger>
 		<root level="info" includeLocation="true">
 			<appender-ref ref="Console" />
+			<AppenderRef ref="kafka-log"/>
 		</root>
+		<Logger name="org.apache.kafka" level="INFO" /> <!-- 避免递归记录 -->
 	</Loggers>
 </Configuration>
 ```
