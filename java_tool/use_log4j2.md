@@ -57,36 +57,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="off" monitorInterval="1800">
 	<properties>
-		<property name="LOG_HOME">logs</property>
-		<property name="ERROR_LOG_FILE_NAME">error</property>
+		<property name="log_home">logs</property>
+		<property name="log_pattern">%d [%t] %-5p %C:%M:%L - %m%n</property>
+		<property name="info_log_file_name">info</property>
+		<property name="error_log_file_name">error</property>
+		<property name="self_log_file_name">self</property>
 	</properties>
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
-			<PatternLayout pattern="%d [%t] %-5p %C:%M:%L - %m%n" />
+			<PatternLayout pattern="${log_pattern}" />
 		</Console>
-		<RollingRandomAccessFile name="ErrorLog"
-			fileName="${LOG_HOME}/${ERROR_LOG_FILE_NAME}.log" filePattern="${LOG_HOME}/${ERROR_LOG_FILE_NAME}.log.%d{yyyy-MM-dd}.gz">
-			<PatternLayout pattern="%d [%t] %-5p %C:%M - %m%n" />
+		<RollingRandomAccessFile name="info-log"
+			fileName="${log_home}/${info_log_file_name}.log" filePattern="${log_home}/${info_log_file_name}.log.%d{yyyy-MM-dd}">
+			<PatternLayout pattern="${log_pattern}" />
 			<Policies>
 				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="100 MB" />
 			</Policies>
-			<DefaultRolloverStrategy max="20" />
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY"
+					onMismatch="NEUTRAL" />
+				<ThresholdFilter level="debug" onMatch="ACCEPT"
+					onMismatch="DENY" />
+			</Filters>
 		</RollingRandomAccessFile>
-
+		<RollingRandomAccessFile name="error-log"
+			fileName="${log_home}/${error_log_file_name}.log" filePattern="${log_home}/${error_log_file_name}.log.%d{yyyy-MM-dd}">
+			<PatternLayout pattern="${log_pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+			<Filters>
+				<ThresholdFilter level="fatal" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+			</Filters>
+		</RollingRandomAccessFile>
+		<RollingRandomAccessFile name="self-log"
+			fileName="${log_home}/${self_log_file_name}.log" filePattern="${log_home}/${self_log_file_name}.log.%d{yyyy-MM-dd}">
+			<PatternLayout pattern="${log_pattern}" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingRandomAccessFile>
 	</Appenders>
 
 	<Loggers>
-		<logger name="org.springframework" level="info">
+		<logger name="xyz.nesting" level="debug">
+			<appender-ref ref="info-log" />
+			<appender-ref ref="error-log" />
 		</logger>
-		<logger name="com.domain" level="info"
-			includeLocation="true" additivity="false">
-			<appender-ref ref="ErrorLog" />
-			<appender-ref ref="Console" />
+		<logger name="selflog" level="debug">
+			<appender-ref ref="self-log" />
 		</logger>
 		<root level="info" includeLocation="true">
 			<appender-ref ref="Console" />
 		</root>
 	</Loggers>
-</Configuration>  
+</Configuration>
 ```
