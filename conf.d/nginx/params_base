@@ -1,0 +1,68 @@
+include mime.types;
+charset utf-8;
+default_type application/octet-stream;
+
+
+log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                  '$status $body_bytes_sent "$http_referer" '
+                  '"$http_user_agent" "$http_x_forwarded_for"';
+access_log  logs/access.log  main;
+
+server_names_hash_bucket_size 128;
+client_max_body_size 512m;
+client_header_buffer_size 32k;
+client_body_buffer_size 512k; #指定用户请求体所使用的buffer的最大值
+client_header_buffer_size 32k; #设置用户请求头所使用的buffer大小
+client_header_timeout 10;
+client_body_timeout 10;
+keepalive_timeout 60;#保持连接超时时间
+send_timeout 10;
+reset_timedout_connection on;#关闭不响应的客户端连接
+large_client_header_buffers 4 64k;
+sendfile on;#使用高效的文件传输
+tcp_nopush on;#在一个数据包里发送所有头文件，而不一个接一个的发送,防止TCP阻塞
+#tcp_nodelay on;#一段一段的发送,及时发送数据,告诉nginx不要缓存数据
+server_tokens off;#隐藏版本号
+underscores_in_headers on;#下划线参数支持
+
+#autoindex on;#开启目录浏览功能； 关闭off
+#autoindex_exact_size off;#关闭详细文件大小统计，让文件大小显示MB，GB单位，默认为b；
+#autoindex_localtime on;#开启以服务器本地时区显示文件修改日期！
+
+gzip on;
+gzip_min_length 1k;
+gzip_buffers 4 16k;
+gzip_http_version 1.1;
+gzip_comp_level 3;
+gzip_types text/plain text/css text/javascript application/x-javascript application/xml application/json image/jpeg image/gif image/png;
+gzip_vary on;
+
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header x-real-ip $remote_addr;
+proxy_set_header x-forwarded-for $proxy_add_x_forwarded_for;
+
+proxy_buffering on;
+proxy_connect_timeout      5;
+proxy_send_timeout         10;
+proxy_read_timeout         180;
+proxy_buffer_size          16k;
+proxy_buffers              4 32k;
+proxy_busy_buffers_size    64k;
+proxy_temp_file_write_size 64k;
+proxy_buffering off;
+proxy_temp_path /tmp/nginx_proxy_temp;
+proxy_cache_path /tmp/nginx_proxy_cache levels=1:2 keys_zone=nginx_proxy_cache:100m max_size=5g inactive=60m;
+proxy_cache_key    $host$uri$is_args$args;
+
+open_file_cache max=204800 inactive=20s;
+open_file_cache_min_uses 2;
+open_file_cache_valid 30s;
+open_file_cache_errors on;
+limit_conn_zone $binary_remote_addr zone=addr:5m;#设置用于保存各种key（比如当前连接数）的共享内存的参数
+limit_conn 100;#允许每一个IP地址最多同时打开有100个连接
+
+#limit_req_zone $binary_remote_addr zone=allips:10m rate=5r/m;#速率限制
+#limit_req_zone $http_x_forwarded_for zone=allips:100m rate=1r/m;
+more_set_headers 'Server: domain-server';#设置响应头的内容
