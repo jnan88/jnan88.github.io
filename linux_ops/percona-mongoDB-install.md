@@ -1,6 +1,6 @@
 ## env
 ```
-yum install numactl -y
+yum install numactl libpcap -y
 ```
 
 ## percona-server-mongodb
