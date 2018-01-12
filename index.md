@@ -1,26 +1,12 @@
-## ioniocn Blog
+## jnliok Blog
 
 ## Tools
 [随机密码](/pages/pass.html)
-
-### Markdown
-
 [pymongo](/tool/python/demo-mongo.py)
 
-```markdown
-Syntax highlighted code block
+## projects
+### monitor-jvm
+通过netty提供http服务向外提供jvm运行时状态信息。
+[monitor-jvm](https://github.com/jnan88/monitor-jvm)
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
