@@ -5,8 +5,8 @@
 [pymongo](/tool/python/demo-mongo.py)
 
 ## projects
-### monitor-jvm
+### [monitor-jvm](https://github.com/jnan88/monitor-jvm)
 通过netty提供http服务向外提供jvm运行时状态信息。
-[monitor-jvm](https://github.com/jnan88/monitor-jvm)
+
 
 
