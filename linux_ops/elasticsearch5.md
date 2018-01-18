@@ -1,4 +1,6 @@
 ## elasticsearch5
+永久修改：将vm.max_map_count=2048000配置到/etc/sysctl.conf中,然后执行sysctl -p生效，重启os后也会持久。
+
 ```
 # /etc/elasticsearch/elasticsearch.yml
 #集群名（同一个集群，名称必须相同）
