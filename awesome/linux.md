@@ -1,3 +1,6 @@
+## 文件同步
+> rsync -zvrtopgl --progress from to
+
 ## shell 随机字符串
 > openssl rand -base64 [size]  # openssl rand -base64 32
 
