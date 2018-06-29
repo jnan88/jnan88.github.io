@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+<!-- 本配置文件适用于log4j2-v2.10.x版本 -->
+	<Properties>
+		<Property name="LOG_PATTERN">%date [%level] [%thread] %logger{60} [%file:%line] %msg%n</Property>
+		<Property name="FILE_LOG_PATTERN">%date [%level] [%thread] %logger{60} %msg%n</Property>
+		<Property name="APP_LOG_ROOT">logs</Property>
+		<Property name="APP_NAME_PATH"></Property>
+<!-- 		<Property name="APP_NAME_PATH">app/</Property> -->
+		<Property name="APP_LOG_FILE">admin</Property>
+	</Properties>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+		<RollingFile name="appInfoLog"
+			fileName="${APP_LOG_ROOT}/${APP_NAME_PATH}${APP_LOG_FILE}.log" filePattern="${APP_LOG_ROOT}/${APP_NAME_PATH}${APP_LOG_FILE}-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${FILE_LOG_PATTERN}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="800 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="60" />
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL" />
+				<ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+			</Filters>
+		</RollingFile>
+		<RollingFile name="appErrorLog"
+			fileName="${APP_LOG_ROOT}/${APP_NAME_PATH}${APP_LOG_FILE}.error.log" filePattern="${APP_LOG_ROOT}/${APP_NAME_PATH}${APP_LOG_FILE}.error-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${FILE_LOG_PATTERN}" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="800 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="60" />
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY" />
+				<ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY" />
+			</Filters>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="org.springframework" level="WARN"/>
+		<Logger name="xyz.nesting" additivity="false">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="appInfoLog" />
+			<AppenderRef ref="appErrorLog" />
+		</Logger>
+		<Root level="INFO">
+			<AppenderRef ref="Console" />
+			<AppenderRef ref="appInfoLog" />
+			<AppenderRef ref="appErrorLog" />
+		</Root>
+	</Loggers>
+</Configuration>
