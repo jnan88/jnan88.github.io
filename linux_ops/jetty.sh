@@ -22,8 +22,9 @@ JAVA=/www/env/java/bin/java
 JETTY_HOME=/www/env/jetty
 JETTY_BASE=$(cd $(dirname $0);pwd)
 NAME=$(basename $JETTY_BASE)
-JETTY_PID=${JETTY_BASE}/${NAME}.pid
-JETTY_STATE=${JETTY_BASE}/${NAME}.state
+JETTY_RUN=${JETTY_BASE}/run
+JETTY_PID=${JETTY_RUN}/jetty.pid
+JETTY_STATE=${JETTY_RUN}/jetty.state
 ########
 
 JVM_OPS_CORE="-Xms1g -Xmx2g -XX:NewSize=256m -XX:MaxNewSize=512m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m -XX:AutoBoxCacheMax=20000"
