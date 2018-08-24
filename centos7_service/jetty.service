@@ -1,0 +1,14 @@
+[Unit]
+Description=jetty
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=forking
+PIDFile=/www/server/jetty/run/jetty.pid
+ExecStart=/www/server/jetty/jetty.sh start
+ExecReload=/www/server/jetty/jetty.sh restart
+ExecStop=/www/server/jetty/jetty.sh stop
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
