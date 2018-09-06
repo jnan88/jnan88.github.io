@@ -1,11 +1,16 @@
 #!/bin/bash
 #############################
 #######openresty安装脚本######
+#yum install yum-utils
+#yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
+#yum install openresty
+#yum --disablerepo="*" --enablerepo="openresty" list available
+#
 #Centos7
 #############################
 build_path=/opt/down
 install_path=/www/server/openresty
-install_version=1.11.2.5
+install_version=1.13.6.2
 #版本
 echo "openresty版本为：${install_version}"
 echo "编译路径为：${build_path}"
