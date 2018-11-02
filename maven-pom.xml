@@ -99,3 +99,8 @@
     <version>1.2.3</version>
 </dependency>
 
+<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.11.1</version>
+		</dependency>
