@@ -565,7 +565,22 @@ public class ExcelUtil {
 		if (null == cell) {
 			return "";
 		}
-		return trimToEmpty(cell.getStringCellValue());
+		String cellVal = null;
+		switch (cell.getCellType()) {
+		case NUMERIC:
+			cellVal = String.valueOf(cell.getNumericCellValue());
+			break;
+		case FORMULA:
+			cellVal =  cell.getCellFormula();
+			break;
+		case BOOLEAN:
+			cellVal =  String.valueOf(cell.getBooleanCellValue());
+			break;
+		default:
+			cellVal = cell.getStringCellValue();
+			break;
+		}
+		return trimToEmpty(cellVal);
 	}
 
 	private static String trimToEmpty(String str) {
