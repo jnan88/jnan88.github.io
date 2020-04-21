@@ -2,6 +2,8 @@
 
 排序算法动画：http://sorting.at/
 
+![IP签名](https://tool.lu/netcard/)
+
 ## 使用aliyun
 ```
 sudo cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak
