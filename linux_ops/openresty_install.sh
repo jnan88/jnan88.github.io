@@ -22,6 +22,8 @@ yum install -y wget make gcc readline-devel perl pcre-devel openssl-devel gcc-c+
 #############################
 mkdir -p ${install_path}
 mkdir -p ${build_path}
+groupadd nginx
+useradd nginx -g nginx
 #############################
 cd ${build_path}
 if [ ! -f openresty-${install_version}.tar.gz ];then
@@ -32,7 +34,7 @@ tar zxvf openresty-${install_version}.tar.gz
 fi
 cd openresty-${install_version}
 
-./configure --prefix=${install_path} --with-http_v2_module --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module
+./configure --prefix=${install_path} --with-http_v2_module --with-http_realip_module --with-http_gzip_static_module --with-http_stub_status_module --user=nginx --group=nginx
 gmake
 gmake install
 echo "openresty-${install_version} 安装成功!"
