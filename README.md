@@ -1,5 +1,8 @@
 # jnan88.github.io
 
+[![jnan88 github stats](https://github-readme-stats.vercel.app/api?username=jnan88)](https://github.com/anuraghazra/github-readme-stats)
+
+
 排序算法动画：http://sorting.at/
 
 ![IP签名](https://tool.lu/netcard/)
